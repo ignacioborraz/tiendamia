@@ -89,7 +89,7 @@ const prod6 = new Product(
     "https://i.postimg.cc/WbcbB2MB/gopro12.png",
   ],
   ["Black"],
-  true
+  false
 );
 const prod7 = new Product(
   "Y7Z8A9",
@@ -196,7 +196,7 @@ const prod14 = new Product(
     "https://i.postimg.cc/HxGQcrcp/mock1.jpg",
   ],
   ["Silver", "Space Gray"],
-  true
+  false
 );
 const prod15 = new Product(
   "G7H8I9",
@@ -303,3 +303,5 @@ const products = [
   prod2,
   prod20,
 ];
+
+export default products;

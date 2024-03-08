@@ -1,16 +1,16 @@
-function printDetails(id) {
+import products from "../data/products.js";
+import createMini from "./createMini.js";
+import changeSubtotal from "./changeSubtotal.js";
+import saveProduct from "./saveProduct.js";
+
+export default function printDetails(id) {
   const product = products.find((each) => each.id === id);
   const detailsTemplate = `
     <section class="product-images-block">
-    <div class="product-images">
-      ${product.images
-        .map(
-          (each) =>
-            `<img class="mini-img" src="${each}" alt="${each}" onclick="changeMini(event)" />`
-        )
-        .join("")}
-    </div>
-    <img class="big-img" id="big-img" src="${product.images[0]}" alt="${product.title}" />
+    <div id="minis" class="product-images"></div>
+    <img class="big-img" id="big-img" src="${product.images[0]}" alt="${
+    product.title
+  }" />
     </section>
     <div class="product-description-block">
       <h1 class="product-title">${product.title}</h1>
@@ -61,12 +61,12 @@ function printDetails(id) {
         </ul>
         <div class="checkout-process">
           <div class="top">
-            <input type="number" min="1" value="1" id="quantity-${
+            <input class="quantity" type="number" min="1" value="1" id="quantity-${
               product.id
-            }" onchange="changeSubtotal(event)"/>          
-            <button type="button" id=${
+            }"/>          
+            <button type="button" id="buy-${
               product.id
-            } class="cart-btn" onclick="saveProd(id)">Añadir al Carrito</button>
+            }" class="cart-btn">Añadir al Carrito</button>
           </div>
         </div>
       </div>
@@ -74,4 +74,9 @@ function printDetails(id) {
   `;
   const detailsSelector = document.querySelector("#details");
   detailsSelector.innerHTML = detailsTemplate;
+  product.images.forEach(createMini);
+  document
+    .querySelector(".quantity")
+    .addEventListener("change", (event) => changeSubtotal(event, id));
+  document.querySelector(`#buy-${id}`).onclick = () => saveProduct(id);
 }

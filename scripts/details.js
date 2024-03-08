@@ -1,11 +1,14 @@
+import { hideSearch, printIcons } from "./modules/printLayout.js";
+import fetchOptions from "./modules/fetchOptions.js";
+import fetchOnSale from "./modules/fetchOnSale.js";
+import printDetails from "./modules/printDetails.js";
+
 hideSearch();
-printNavBar(options, "navbar");
-printFooter(options, "footer");
+printIcons();
+fetchOptions();
+fetchOnSale();
 
 const query = location.search;
 const params = new URLSearchParams(query);
 const id = params.get("id");
 printDetails(id);
-
-const onsale = products.filter((each) => each.onsale);
-printProductCards(onsale, "product-container");

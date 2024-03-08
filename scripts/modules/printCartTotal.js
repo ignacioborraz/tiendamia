@@ -1,7 +1,7 @@
-function printCartTotal(arrayOfProducts, id) {
-  let total = 0;
-  arrayOfProducts.forEach(
-    (each) => (total = total + each.price * each.quantity)
+export default function printCartTotal(arrayOfProducts, id) {
+  const total = arrayOfProducts.reduce(
+    (acc, current) => acc + current.price * current.quantity,
+    0
   );
   const template = `
      <div class="cart-resume">

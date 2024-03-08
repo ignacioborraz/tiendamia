@@ -1,4 +1,7 @@
-function printCartCards(arrayOfProducts, id) {
+import createCartCard from "./createCartCard.js";
+import changeQuantityCart from "./changeQuantityCart.js";
+
+export default function printCartCards(arrayOfProducts, id) {
   let cartTemplates = "";
   const selector = document.getElementById(id);
   if (arrayOfProducts.length > 0) {
@@ -6,6 +9,9 @@ function printCartCards(arrayOfProducts, id) {
       cartTemplates = cartTemplates + createCartCard(element);
     }
     selector.innerHTML = cartTemplates;
+    document.querySelectorAll(".product-input").forEach((each) => {
+      each.onchange = (event) => changeQuantityCart(event, arrayOfProducts);
+    });
   } else {
     selector.innerHTML = `
     <article class="product-cart">
