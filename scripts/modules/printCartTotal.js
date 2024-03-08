@@ -1,3 +1,5 @@
+import buyProducts from "./buyProducts.js";
+
 export default function printCartTotal(arrayOfProducts, id) {
   const total = arrayOfProducts.reduce(
     (acc, current) => acc + current.price * current.quantity,
@@ -17,4 +19,8 @@ export default function printCartTotal(arrayOfProducts, id) {
    </div>`;
   const selector = document.getElementById(id);
   selector.innerHTML = template;
+  if (arrayOfProducts.length > 0) {
+    const buySelector = document.getElementById("buy");
+    buySelector.addEventListener("click", buyProducts);
+  }
 }

@@ -2,7 +2,6 @@ import products from "../data/products.js";
 
 export default function saveProduct(id) {
   const isOnline = JSON.parse(localStorage.getItem("isOnline")) || false;
-  console.log(isOnline);
   if (isOnline) {
     const found = products.find((each) => each.id === id);
     const product = {
